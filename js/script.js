@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+
   // 네비게이션 링크 설정
   const navLinks = document.querySelectorAll(".nav-link");
 
@@ -31,10 +32,33 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+    // 네비게이션 토글 버튼 기능 추가
+    const toggleButton = document.querySelector('.navbar-toggler');
+    const navbarDiv = document.getElementById('navbar');
+  
+    if (toggleButton) {
+      toggleButton.addEventListener('click', function () {
+        if (navbarDiv.classList.contains('show')) {
+          // 버튼이 눌리지 않은 상태로 변경
+          toggleButton.classList.add('collapsing');
+          toggleButton.classList.remove('collapsing');
+
+          toggleButton.classList.add('collapsed');
+          navbarDiv.classList.remove('show');
+          toggleButton.setAttribute('aria-expanded', 'true');
+        } else {
+          // 버튼이 눌린 상태로 변경          
+          toggleButton.classList.remove('collapsed');
+          navbarDiv.classList.add('show');
+          toggleButton.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
   // 스크롤 이벤트 리스너 추가
   window.addEventListener("scroll", () => {
     let current = "";
-
+    
     // 각 섹션의 위치를 확인하여 현재 위치 파악
     document.querySelectorAll("section").forEach((section) => {
       const sectionTop = section.offsetTop;
