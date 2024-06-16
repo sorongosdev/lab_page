@@ -88,99 +88,30 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // 이미지 갤러리
-  let startX = 0;
-  let currentX = 0;
-  let isDragging = false;
-  let initialOffset = 0;
-
   const slidesContainer = document.querySelector(".slides");
   const slides = document.querySelectorAll(".slide");
   const slideWidth = 200; // 이미지 크기
   const slidePadding = 12; // 슬라이드 패딩
-  const slideStep = slideWidth + slidePadding * 2; // 각 슬라이드의 총 너비
-  const containerMarginLeft = 64; // 컨테이너의 margin-left
-  let currentOffset = 0;
+  const slideStep = slideWidth + slidePadding; // 각 슬라이드의 총 너비
+  let currentIndex = 0;
 
-  // 슬라이드의 전체 너비 계산
-  const totalWidth = slides.length * slideStep;
-  const containerWidth = slidesContainer.offsetWidth - containerMarginLeft;
-
-  function updateTransform(offset) {
+  function updateTransform(index) {
+    const offset = -index * slideStep;
     slidesContainer.style.transform = `translateX(${offset}px)`;
   }
 
-  function getTransformValue() {
-    const style = window.getComputedStyle(slidesContainer);
-    const matrix = new WebKitCSSMatrix(style.transform);
-    return matrix.m41; // translateX 값 반환
-  }
-  function clampOffset(offset) {
-    // 슬라이드의 시작과 끝을 넘어가지 않도록 제한
-    const maxOffset = 0;
-    const minOffset = -(totalWidth - containerWidth);
-    return Math.min(Math.max(offset, minOffset), maxOffset);
-  }
-
-  slidesContainer.addEventListener("mousedown", (e) => {
-    startX = e.clientX;
-    initialOffset = getTransformValue();
-    isDragging = true;
-    slidesContainer.style.transition = "none";
-  });
-
-  slidesContainer.addEventListener("mousemove", (e) => {
-    if (!isDragging) return;
-    currentX = e.clientX;
-    const diff = currentX - startX;
-    const newOffset = clampOffset(initialOffset + diff);
-    updateTransform(newOffset);
-  });
-
-  slidesContainer.addEventListener("mouseup", () => {
-    isDragging = false;
-    slidesContainer.style.transition = "none";
-    currentOffset = getTransformValue();
-  });
-
-  slidesContainer.addEventListener("mouseleave", () => {
-    if (isDragging) {
-      isDragging = false;
-      slidesContainer.style.transition = "none";
-      currentOffset = getTransformValue();
-    }
-  });
-
-  slidesContainer.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-    initialOffset = getTransformValue();
-    isDragging = true;
-    slidesContainer.style.transition = "none";
-  });
-
-  slidesContainer.addEventListener("touchmove", (e) => {
-    if (!isDragging) return;
-    currentX = e.touches[0].clientX;
-    const diff = currentX - startX;
-    const newOffset = clampOffset(initialOffset + diff);
-    updateTransform(newOffset);
-  });
-
-  slidesContainer.addEventListener("touchend", () => {
-    isDragging = false;
-    slidesContainer.style.transition = "none";
-    currentOffset = getTransformValue();
-  });
-
   function nextSlide() {
-    currentOffset = clampOffset(currentOffset - slideStep);
-    slidesContainer.style.transition = "transform 0.3s ease-in-out";
-    updateTransform(currentOffset);
+    if (currentIndex < slides.length - 1) {
+      currentIndex++;
+      updateTransform(currentIndex);
+    }
   }
 
   function prevSlide() {
-    currentOffset = clampOffset(currentOffset + slideStep);
-    slidesContainer.style.transition = "transform 0.3s ease-in-out";
-    updateTransform(currentOffset);
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateTransform(currentIndex);
+    }
   }
 
   document.querySelector(".next").addEventListener("click", nextSlide);
