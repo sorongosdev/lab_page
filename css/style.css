@@ -265,3 +265,7 @@
     height: 200px;
   }
 }
+
+.news-ul .news-date{
+  font-style: italic;
+}
