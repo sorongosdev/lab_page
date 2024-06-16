@@ -73,15 +73,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function nextSlide() {
-    if (currentIndex < totalSlides - 1) {
-      showSlide(currentIndex + 1);
-    }
+    showSlide(currentIndex + 1);
   }
 
   function prevSlide() {
-    if (currentIndex > 0) {
-      showSlide(currentIndex - 1);
-    }
+    showSlide(currentIndex - 1);
   }
 
   // 화살표 버튼에 이벤트 리스너 추가
@@ -95,4 +91,65 @@ document.addEventListener("DOMContentLoaded", function () {
   if (prevButton) {
     prevButton.addEventListener('click', prevSlide);
   }
+
+  // 터치 및 드래그 이벤트를 위한 변수
+  let startX = 0;
+  let isDragging = false;
+
+  // 터치 시작 이벤트
+  slidesContainer.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+  });
+
+  // 터치 이동 이벤트
+  slidesContainer.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    const currentX = e.touches[0].clientX;
+    const diff = startX - currentX;
+
+    if (diff > 50) {
+      nextSlide();
+      isDragging = false;
+    } else if (diff < -50) {
+      prevSlide();
+      isDragging = false;
+    }
+  });
+
+  // 터치 종료 이벤트
+  slidesContainer.addEventListener('touchend', () => {
+    isDragging = false;
+  });
+
+  // 마우스 드래그 시작 이벤트
+  slidesContainer.addEventListener('mousedown', (e) => {
+    startX = e.clientX;
+    isDragging = true;
+  });
+
+  // 마우스 드래그 이동 이벤트
+  slidesContainer.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    const currentX = e.clientX;
+    const diff = startX - currentX;
+
+    if (diff > 50) {
+      nextSlide();
+      isDragging = false;
+    } else if (diff < -50) {
+      prevSlide();
+      isDragging = false;
+    }
+  });
+
+  // 마우스 드래그 종료 이벤트
+  slidesContainer.addEventListener('mouseup', () => {
+    isDragging = false;
+  });
+
+  // 마우스가 슬라이더 밖으로 나갔을 때 드래그 종료
+  slidesContainer.addEventListener('mouseleave', () => {
+    isDragging = false;
+  });
 });
