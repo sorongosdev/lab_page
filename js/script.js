@@ -54,11 +54,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 이미지 슬라이더 기능 추가
   let currentIndex = 0;
+  const slideWidth = 212; // 각 슬라이드의 고정된 너비 (패딩 포함)
+  const slidesContainer = document.querySelector('.slides');
+  const totalSlides = document.querySelectorAll('.slide').length;
+  const totalWidth = slideWidth * totalSlides;
 
   function showSlide(index) {
-    const slides = document.querySelector('.slides');
-    const totalSlides = document.querySelectorAll('.slide').length;
-
     if (index >= totalSlides) {
       currentIndex = 0;
     } else if (index < 0) {
@@ -67,17 +68,22 @@ document.addEventListener("DOMContentLoaded", function () {
       currentIndex = index;
     }
 
-    const offset = -currentIndex * 100;
-    slides.style.transform = `translateX(${offset}%)`;
+    const offset = -currentIndex * slideWidth;
+    slidesContainer.style.transform = `translateX(${offset}px)`;
   }
 
   function nextSlide() {
-    showSlide(currentIndex + 1);
+    if (currentIndex < totalSlides - 1) {
+      showSlide(currentIndex + 1);
+    }
   }
 
   function prevSlide() {
-    showSlide(currentIndex - 1);
+    if (currentIndex > 0) {
+      showSlide(currentIndex - 1);
+    }
   }
+
   // 화살표 버튼에 이벤트 리스너 추가
   const nextButton = document.querySelector('.next');
   const prevButton = document.querySelector('.prev');
