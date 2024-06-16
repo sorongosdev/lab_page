@@ -1,0 +1,16 @@
+.network-icon img {
+  height: 2rem;
+  width: 2rem;
+}
+
+.graduation-cap-icon{
+  height:1.5rem;
+  width:1.5rem;
+  color: #343a40;
+  margin-right: 12px;
+
+}
+
+.edu-item{
+  display: flex;
+}
