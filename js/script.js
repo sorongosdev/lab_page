@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-
   // 네비게이션 링크 설정
   const navLinks = document.querySelectorAll(".nav-link");
 
@@ -33,35 +32,35 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // 네비게이션 토글 버튼 기능 추가
-  const toggleButton = document.querySelector('.navbar-toggler');
-  const navbarDiv = document.getElementById('navbar');
+  const toggleButton = document.querySelector(".navbar-toggler");
+  const navbarDiv = document.getElementById("navbar");
 
   if (toggleButton) {
-    toggleButton.addEventListener('click', function () {
-      if (navbarDiv.classList.contains('show')) {
+    toggleButton.addEventListener("click", function () {
+      if (navbarDiv.classList.contains("show")) {
         // 메뉴를 서서히 사라지게
         navbarDiv.style.height = `${navbarDiv.scrollHeight}px`;
         navbarDiv.offsetHeight; // 강제 리플로우(reflow) 트리거
-        navbarDiv.style.height = '0';
-        navbarDiv.style.opacity = '0';
+        navbarDiv.style.height = "0";
+        navbarDiv.style.opacity = "0";
 
         setTimeout(() => {
-          navbarDiv.classList.remove('show');
-          toggleButton.classList.add('collapsed');
-          toggleButton.setAttribute('aria-expanded', 'false');
+          navbarDiv.classList.remove("show");
+          toggleButton.classList.add("collapsed");
+          toggleButton.setAttribute("aria-expanded", "false");
         }, 300); // CSS 전환 시간과 동일하게 설정
       } else {
         // 메뉴를 서서히 나타나게 하기
-        navbarDiv.classList.add('show');
-        navbarDiv.style.height = '0';
+        navbarDiv.classList.add("show");
+        navbarDiv.style.height = "0";
         navbarDiv.offsetHeight; // 강제 리플로우(reflow) 트리거
         navbarDiv.style.height = `${navbarDiv.scrollHeight}px`;
-        navbarDiv.style.opacity = '1';
+        navbarDiv.style.opacity = "1";
 
         setTimeout(() => {
-          navbarDiv.style.height = 'auto'; // 높이를 auto로 설정
-          toggleButton.classList.remove('collapsed');
-          toggleButton.setAttribute('aria-expanded', 'true');
+          navbarDiv.style.height = "auto"; // 높이를 auto로 설정
+          toggleButton.classList.remove("collapsed");
+          toggleButton.setAttribute("aria-expanded", "true");
         }, 300); // CSS 전환 시간과 동일하게 설정
       }
     });
@@ -70,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // 스크롤 이벤트 리스너 추가
   window.addEventListener("scroll", () => {
     let current = "";
-    
+
     // 각 섹션의 위치를 확인하여 현재 위치 파악
     document.querySelectorAll("section").forEach((section) => {
       const sectionTop = section.offsetTop;
@@ -88,104 +87,102 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // 이미지 슬라이더 기능 추가
-  let currentIndex = 0;
-  const slideWidth = 212; // 각 슬라이드의 고정된 너비 (패딩 포함)
-  const slidesContainer = document.querySelector('.slides');
-  const totalSlides = document.querySelectorAll('.slide').length;
-  const totalWidth = slideWidth * totalSlides;
+  // 이미지 갤러리
+  let startX = 0;
+  let currentX = 0;
+  let isDragging = false;
+  let initialOffset = 0;
 
-  function showSlide(index) {
-    if (index >= totalSlides) {
-      currentIndex = 0;
-    } else if (index < 0) {
-      currentIndex = totalSlides - 1;
-    } else {
-      currentIndex = index;
-    }
+  const slidesContainer = document.querySelector(".slides");
+  const slides = document.querySelectorAll(".slide");
+  const slideWidth = 200; // 이미지 크기
+  const slidePadding = 12; // 슬라이드 패딩
+  const slideStep = slideWidth + slidePadding * 2; // 각 슬라이드의 총 너비
+  const containerMarginLeft = 64; // 컨테이너의 margin-left
+  let currentOffset = 0;
 
-    const offset = -currentIndex * slideWidth;
+  // 슬라이드의 전체 너비 계산
+  const totalWidth = slides.length * slideStep;
+  const containerWidth = slidesContainer.offsetWidth - containerMarginLeft;
+
+  function updateTransform(offset) {
     slidesContainer.style.transform = `translateX(${offset}px)`;
   }
 
+  function getTransformValue() {
+    const style = window.getComputedStyle(slidesContainer);
+    const matrix = new WebKitCSSMatrix(style.transform);
+    return matrix.m41; // translateX 값 반환
+  }
+  function clampOffset(offset) {
+    // 슬라이드의 시작과 끝을 넘어가지 않도록 제한
+    const maxOffset = 0;
+    const minOffset = -(totalWidth - containerWidth);
+    return Math.min(Math.max(offset, minOffset), maxOffset);
+  }
+
+  slidesContainer.addEventListener("mousedown", (e) => {
+    startX = e.clientX;
+    initialOffset = getTransformValue();
+    isDragging = true;
+    slidesContainer.style.transition = "none";
+  });
+
+  slidesContainer.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+    currentX = e.clientX;
+    const diff = currentX - startX;
+    const newOffset = clampOffset(initialOffset + diff);
+    updateTransform(newOffset);
+  });
+
+  slidesContainer.addEventListener("mouseup", () => {
+    isDragging = false;
+    slidesContainer.style.transition = "none";
+    currentOffset = getTransformValue();
+  });
+
+  slidesContainer.addEventListener("mouseleave", () => {
+    if (isDragging) {
+      isDragging = false;
+      slidesContainer.style.transition = "none";
+      currentOffset = getTransformValue();
+    }
+  });
+
+  slidesContainer.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+    initialOffset = getTransformValue();
+    isDragging = true;
+    slidesContainer.style.transition = "none";
+  });
+
+  slidesContainer.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
+    currentX = e.touches[0].clientX;
+    const diff = currentX - startX;
+    const newOffset = clampOffset(initialOffset + diff);
+    updateTransform(newOffset);
+  });
+
+  slidesContainer.addEventListener("touchend", () => {
+    isDragging = false;
+    slidesContainer.style.transition = "none";
+    currentOffset = getTransformValue();
+  });
+
   function nextSlide() {
-    showSlide(currentIndex + 1);
+    currentOffset = clampOffset(currentOffset - slideStep);
+    slidesContainer.style.transition = "transform 0.3s ease-in-out";
+    updateTransform(currentOffset);
   }
 
   function prevSlide() {
-    showSlide(currentIndex - 1);
+    currentOffset = clampOffset(currentOffset + slideStep);
+    slidesContainer.style.transition = "transform 0.3s ease-in-out";
+    updateTransform(currentOffset);
   }
 
-  // 화살표 버튼에 이벤트 리스너 추가
-  const nextButton = document.querySelector('.next');
-  const prevButton = document.querySelector('.prev');
-
-  if (nextButton) {
-    nextButton.addEventListener('click', nextSlide);
-  }
-
-  if (prevButton) {
-    prevButton.addEventListener('click', prevSlide);
-  }
-
-  // 터치 및 드래그 이벤트를 위한 변수
-  let startX = 0;
-  let isDragging = false;
-
-  // 터치 시작 이벤트
-  slidesContainer.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-    isDragging = true;
-  });
-
-  // 터치 이동 이벤트
-  slidesContainer.addEventListener('touchmove', (e) => {
-    if (!isDragging) return;
-    const currentX = e.touches[0].clientX;
-    const diff = startX - currentX;
-
-    if (diff > 50) {
-      nextSlide();
-      isDragging = false;
-    } else if (diff < -50) {
-      prevSlide();
-      isDragging = false;
-    }
-  });
-
-  // 터치 종료 이벤트
-  slidesContainer.addEventListener('touchend', () => {
-    isDragging = false;
-  });
-
-  // 마우스 드래그 시작 이벤트
-  slidesContainer.addEventListener('mousedown', (e) => {
-    startX = e.clientX;
-    isDragging = true;
-  });
-
-  // 마우스 드래그 이동 이벤트
-  slidesContainer.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-    const currentX = e.clientX;
-    const diff = startX - currentX;
-
-    if (diff > 50) {
-      nextSlide();
-      isDragging = false;
-    } else if (diff < -50) {
-      prevSlide();
-      isDragging = false;
-    }
-  });
-
-  // 마우스 드래그 종료 이벤트
-  slidesContainer.addEventListener('mouseup', () => {
-    isDragging = false;
-  });
-
-  // 마우스가 슬라이더 밖으로 나갔을 때 드래그 종료
-  slidesContainer.addEventListener('mouseleave', () => {
-    isDragging = false;
-  });
+  document.querySelector(".next").addEventListener("click", nextSlide);
+  document.querySelector(".prev").addEventListener("click", prevSlide);
 });
