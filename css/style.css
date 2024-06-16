@@ -176,6 +176,82 @@
 .hpic-img{
   width: 100%;
   /* margin: 0px 0px 0px 0px auto; */
-  border-radius: 8px;
+  /* border-radius: 8px; */
   box-shadow: 0px 0px 4px 2px rgba(0,0,0,0.1);
+}
+
+/* member cards */
+.wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-card {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ background-color: #fff;
+ border-radius: 10px;
+ padding: 20px;
+ width: 100%;
+ position: relative;
+ overflow: hidden;
+ box-shadow: 0 2px 20px -5px rgba(0,0,0,0.5);
+}
+
+.user-card-img {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;   
+  z-index: 3;
+}
+
+.user-card-img img {
+  width: 520px;
+  object-fit: contain;
+  /* border: 1px solid red; */
+  padding: 12px;
+}
+
+.user-card-info {
+  text-align: left;
+  /* border: 1px solid blue; */
+  padding-left: 12px;
+}
+
+.user-card-info h2 {
+  font-size: 24px;
+  margin: 0;
+  margin-bottom: 10px;
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+.user-card-info p {
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+.user-card-info p span {
+ font-weight: 700;
+ margin-right: 10px;
+}
+
+@media (max-width: 767px){
+  .wrapper{
+     padding-top: 3%;
+  }
+  .user-card:before {
+     width: 300%;
+     height: 200px;
+     transform: rotate(0);
+  }
+  .user-card-info h2 {
+     margin-top: 25px;
+     font-size: 35px;
+  }
+  .user-card-info p span {
+     display: block;
+     margin-bottom: 15px;
+     font-size: 18px;
+  }
 }
