@@ -152,3 +152,15 @@
   color: #770001;
   font-weight: 550;
 }
+
+#navbar {
+  overflow: hidden;
+  transition: height 0.3s ease-out, opacity 0.3s ease-out;
+  height: 0;
+  opacity: 0;
+}
+
+#navbar.show {
+  height: auto; /* 실제 높이를 계산하기 위해 auto로 설정 */
+  opacity: 1;
+}
