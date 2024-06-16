@@ -14,3 +14,22 @@
 .edu-item{
   display: flex;
 }
+
+.contact-icon{
+  display: flex;
+  align-items: center;
+}
+
+.contact-icon img{
+  margin-right: 12px;
+  width: 1.5rem;
+}
+
+.contact-icon .location-icon{
+  height: 1.rem;
+  margin-right: 12px;
+}
+
+.contact-ul{
+  padding-left: 0;
+}
