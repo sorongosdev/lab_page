@@ -137,3 +137,12 @@
   font-size: 12px;
   margin: 4px;
 }
+
+.research-projects-ul li{
+  margin-bottom: 12px;
+}
+
+.sponsor{
+  color: #770001;
+  font-weight: 550;
+}
