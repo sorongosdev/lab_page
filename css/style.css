@@ -273,3 +273,11 @@
 .news-ul .news-date{
   font-style: italic;
 }
+
+/* .col-lg-8 .h5-items{
+  margin-top: 40px;
+} */
+
+.col-lg-8 h5:not(:first-of-type){
+  margin-top: 40px;
+}
