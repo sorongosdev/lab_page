@@ -8,7 +8,7 @@ https://sorongosdev.github.io/lab_page/
 
 ### TODO
 
-- [ ] people에 교수님 프로필
+- [x] people에 교수님 프로필
 - [x] exper 지우기
 - [ ] 칩 팝업 -> 정보(팝업) -> 주제, 날짜, 디자이너
 - [ ] 최상단 메인 하단에 스폰서

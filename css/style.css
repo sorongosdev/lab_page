@@ -1,4 +1,4 @@
-*{
+* {
   font-family: "Noto Sans KR", sans-serif;
 }
 
@@ -7,34 +7,33 @@
   width: 2rem;
 }
 
-.graduation-cap-icon{
-  height:1.5rem;
-  width:1.5rem;
+.graduation-cap-icon {
+  height: 1.5rem;
+  width: 1.5rem;
   color: #343a40;
   margin-right: 12px;
-
 }
 
-.edu-item{
+.edu-item {
   display: flex;
 }
 
-.contact-icon{
+.contact-icon {
   display: flex;
   align-items: center;
 }
 
-.contact-icon img{
+.contact-icon img {
   margin-right: 12px;
   width: 1.5rem;
 }
 
-.contact-icon .location-icon{
+.contact-icon .location-icon {
   height: 2rem;
   margin-right: 12px;
 }
 
-.contact-ul{
+.contact-ul {
   padding-left: 0;
 }
 
@@ -52,7 +51,6 @@
   display: flex;
   transition: transform 0.5s ease-in-out;
   gap: 12px;
-
 }
 
 .slide {
@@ -62,20 +60,20 @@
   height: 200px; /* 슬라이드 높이를 200px로 설정 */
   background-color: #f7f7f7;
   padding: 12px;
-  
 }
 
 .slide img {
   width: 100%;
-  height: 100%;  object-fit: contain;
+  height: 100%;
+  object-fit: contain;
   margin: 0 auto;
   display: block;
   pointer-events: none; /* 마우스 이벤트 방지 */
   user-select: none; /* 텍스트 선택 방지 */
-
 }
 
-.prev, .next {
+.prev,
+.next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -95,7 +93,8 @@
   right: 12px;
 }
 
-.prev:hover, .next:hover {
+.prev:hover,
+.next:hover {
   background-color: rgba(82, 82, 82, 0.5);
 }
 
@@ -142,17 +141,17 @@
   border-color: transparent #fff transparent transparent;
 }
 
-.chip-description{
+.chip-description {
   font-size: 12px;
   margin: 4px;
   user-select: none;
 }
 
-.research-projects-ul li{
+.research-projects-ul li {
   margin-bottom: 12px;
 }
 
-.sponsor{
+.sponsor {
   color: #770001;
   font-weight: 550;
 }
@@ -171,46 +170,44 @@
   }
 }
 
-
-.hamburger-icon{
+.hamburger-icon {
   width: 1.5rem;
   height: 1.5rem;
 }
 
-.hpic-img{
+.hpic-img {
   width: 100%;
   /* margin: 0px 0px 0px 0px auto; */
   /* border-radius: 8px; */
-  box-shadow: 0px 0px 4px 2px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.1);
 }
 
 /* member cards */
-.wrapper{
+.wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 20px 0px;
 }
 .user-card {
- display: flex;
- align-items: center;
- justify-content: center;
- background-color: #fff;
- border-radius: 10px;
- padding: 20px;
- width: 100%;
- position: relative;
- overflow: hidden;
- box-shadow: 0 2px 20px -5px rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 20px -5px rgba(0, 0, 0, 0.5);
 }
 
 .user-card-img {
   display: flex;
   justify-content: center;
-  align-items: center;   
+  align-items: center;
   z-index: 3;
   width: 28%;
-  
 }
 
 .user-card-img img {
@@ -229,7 +226,7 @@
   font-size: 24px;
   margin: 0;
   margin-bottom: 10px;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
 }
 
 .user-card-info p {
@@ -237,15 +234,15 @@
   margin-bottom: 2px;
 }
 .user-card-info p span {
- font-weight: 700;
- margin-right: 10px;
+  font-weight: 700;
+  margin-right: 10px;
 }
 
-@media (max-width: 767px){
-  .wrapper{
-     padding-top: 3%;
+@media (max-width: 767px) {
+  .wrapper {
+    padding-top: 3%;
   }
-  .user-card-info{
+  .user-card-info {
     width: 100%;
     padding: 4px 8px;
     margin-left: 0px;
@@ -261,23 +258,27 @@
     margin-bottom: 4px;
     font-size: 16px;
   }
-  .user-card{
+  .user-card {
     display: block;
   }
-  .user-card-img{
+  .user-card-img {
     width: 100%;
     height: 200px;
   }
-  .user-card-img img{
+  .user-card-img img {
     width: 100%;
     height: 200px;
   }
 }
 
-.news-ul .news-date{
+.news-ul .news-date {
   font-style: italic;
 }
 
-.col-lg-8 h5:not(:first-of-type){
+.col-lg-8 h5:not(:first-of-type) {
   margin-top: 40px;
+}
+
+.modal-content {
+  background-color: #fff;
 }
