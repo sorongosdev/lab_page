@@ -285,20 +285,27 @@
   margin-top: 40px;
 }
 
+section {
+  overflow: hidden;
+}
+
 .home-section:first-of-type {
   padding: 0;
 }
 
 /* 캐러셀 */
+
 #carousel-autoplaying {
-  height: 600px;
+  height: 800px;
   width: 100%;
   background: gray;
   padding: 0;
+  overflow: hidden;
 }
 
 .carousel-item img {
-  height: 600px;
+  height: 800px;
+  width: 100%;
   object-fit: cover;
   position: relative;
   z-index: 0;
@@ -306,6 +313,7 @@
 
 .carousel-item {
   position: relative;
+  width: 100%;
   transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
 }
 .carousel-item-left {
@@ -317,7 +325,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 600px;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5); /* 어두운 효과 */
   z-index: 1;
 }
