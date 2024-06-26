@@ -285,22 +285,27 @@
   margin-top: 40px;
 }
 
+.home-section {
+  position: relative;
+  height: 800px;
+}
+
 #carousel-autoplaying {
   /* border: 1px solid red; */
-  height: 100px;
-  background: white;
-  border-radius: 4px;
-  box-shadow: 1px 1px 4px gray;
+  top: 0;
+  left: 0;
+  position: absolute;
+  height: 800px;
+  width: 100%;
+  background: gray;
+  padding: 0;
+}
+
+.carousel-item img {
+  height: 800px;
+  object-fit: cover;
 }
 
 :root {
   --theme-color: #3f51b5;
-}
-
-.carousel-control-prev-icon {
-  background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23000" viewBox="0 0 16 16"><path d="M11.596 14.4a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 0-1.414l6-6a1 1 0 0 1 1.414 1.414L6.414 8l5.182 5.182a1 1 0 0 1 0 1.414z"/></svg>');
-}
-
-.carousel-control-next-icon {
-  background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23000" viewBox="0 0 16 16"><path d="M4.404 1.6a1 1 0 0 1 1.414 0l6 6a1 1 0 0 1 0 1.414l-6 6a1 1 0 0 1-1.414-1.414L9.586 8 4.404 2.818a1 1 0 0 1 0-1.414z"/></svg>');
 }
