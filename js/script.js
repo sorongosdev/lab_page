@@ -1,4 +1,28 @@
 document.addEventListener("DOMContentLoaded", function () {
+  var carousel = document.getElementById("carousel-autoplaying");
+
+  carousel.addEventListener("slide.bs.carousel", function (e) {
+    var relatedTarget = e.relatedTarget;
+    var idx = [...relatedTarget.parentElement.children].indexOf(relatedTarget);
+    var items = document.querySelectorAll(".carousel-item");
+    var totalItems = items.length;
+
+    if (idx === 0) {
+      items[totalItems - 1].classList.add("carousel-item-left");
+    } else {
+      items.forEach(function (item) {
+        item.classList.remove("carousel-item-left");
+      });
+    }
+  });
+
+  carousel.addEventListener("slid.bs.carousel", function (e) {
+    var items = document.querySelectorAll(".carousel-item");
+    items.forEach(function (item) {
+      item.classList.remove("carousel-item-left");
+    });
+  });
+
   // 네비게이션 링크 설정
   const navLinks = document.querySelectorAll(".nav-link");
 
