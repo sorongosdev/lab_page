@@ -1,4 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
+  $(".autoplay").slick({
+    slidesToShow: 6,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    arrows: false, // 이전 및 다음 버튼을 제거
+  });
+
   var carousel = document.getElementById("carousel-autoplaying");
 
   carousel.addEventListener("slide.bs.carousel", function (e) {
