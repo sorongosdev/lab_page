@@ -2,6 +2,11 @@
   font-family: "Noto Sans KR", sans-serif;
 }
 
+/* navbar */
+.navbar-brand img {
+  margin-right: 4px;
+}
+
 /* gallery */
 .gallery-title-row {
   display: flex;
@@ -75,6 +80,35 @@
 .chip-item {
   border: 1px solid red;
   margin: 0px 12px;
+}
+
+/* publication */
+
+.card-body {
+  padding: 16px;
+}
+
+.pub-card {
+  /* width: 300px; */
+}
+
+.pub-card img {
+  height: 180px;
+  object-fit: cover;
+}
+
+#publications .list-group-item {
+  padding: 0px 8px;
+  margin: 0;
+}
+
+#publications .badge {
+  margin: 4px 0px 4px;
+  font-size: 12px;
+  font-weight: 300;
+  word-break: break-word;
+  white-space: normal;
+  text-align: left;
 }
 
 /* icon */
