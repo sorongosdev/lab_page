@@ -5,6 +5,20 @@ document.addEventListener("DOMContentLoaded", function () {
     autoplay: true,
     autoplaySpeed: 2000,
     arrows: false, // 이전 및 다음 버튼을 제거
+    responsive: [
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 575,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+    ],
   });
 
   var carousel = document.getElementById("carousel-autoplaying");
