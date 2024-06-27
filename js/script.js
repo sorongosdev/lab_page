@@ -1,4 +1,23 @@
 document.addEventListener("DOMContentLoaded", function () {
+  $(document).ready(function () {
+    // 햄버거 버튼 클릭 이벤트 핸들러
+    $(".navbar-toggler, .navbar-toggler-icon").click(function (event) {
+      var $navbar = $(".navbar-collapse");
+      $navbar.collapse("toggle");
+      event.stopPropagation(); // 이벤트 전파 중지
+    });
+
+    // 문서 클릭 이벤트 핸들러
+    $(document).click(function (event) {
+      var clickover = $(event.target);
+      var $navbar = $(".navbar-collapse");
+      var _opened = $navbar.hasClass("show");
+      if (_opened && !clickover.closest(".navbar").length) {
+        $navbar.collapse("hide");
+      }
+    });
+  });
+
   $(".autoplay").slick({
     slidesToShow: 6,
     slidesToScroll: 1,
@@ -26,6 +45,15 @@ document.addEventListener("DOMContentLoaded", function () {
     slidesToShow: 4,
     slidesToScroll: 1,
     arrows: true,
+    dots: true,
+    responsive: [
+      {
+        breakpoint: 575,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+    ],
   });
 
   var carousel = document.getElementById("carousel-autoplaying");

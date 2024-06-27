@@ -61,24 +61,37 @@
   font-size: 12px;
 }
 
+/* chip gallery */
 /* slider slick */
+
+.slick-next,
+.slick-prev {
+  width: 30px; /* 버튼 넓이 */
+  height: 180px; /* 버튼 높이 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1; /* 필요시 z-index 조정 */
+  border-radius: 0; /* 모서리를 둥글지 않게 설정 */
+}
+
 .slick-prev:before,
 .slick-next:before {
-  color: black; /* 화살표 색상 변경 */
+  color: rgba(0, 0, 0, 0.3); /* 화살표 색상 변경 */
+  font-size: 32px;
 }
 
 .slick-prev {
-  left: -12px; /* 왼쪽 화살표 위치 조정 */
+  left: -36px; /* 왼쪽 화살표 위치 조정 */
   z-index: 1; /* 필요시 z-index 조정 */
 }
 
 .slick-next {
-  right: -12px; /* 오른쪽 화살표 위치 조정 */
+  right: -36px;
   z-index: 1; /* 필요시 z-index 조정 */
 }
 
 .chip-item {
-  border: 1px solid red;
   margin: 0px 12px;
 }
 
@@ -258,10 +271,8 @@
   border-color: transparent #fff transparent transparent;
 }
 
-.chip-description {
-  font-size: 12px;
-  margin: 4px;
-  user-select: none;
+.modal-body-title {
+  font-weight: 500;
 }
 
 .research-projects-ul li {
@@ -551,6 +562,18 @@ section {
 @media (max-width: 575px) {
   .home-description-container {
     left: 32px;
+  }
+
+  .slick-prev {
+    left: 0; /* 왼쪽 화살표 위치 조정 */
+  }
+
+  .slick-next {
+    right: 0;
+  }
+
+  .chip-item {
+    margin: 0px 16px;
   }
 }
 
