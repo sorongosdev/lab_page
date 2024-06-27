@@ -83,6 +83,9 @@
 }
 
 /* publication */
+.list-group-item a {
+  margin-left: auto;
+}
 
 .card-body {
   padding: 16px;
@@ -95,6 +98,10 @@
 .pub-card img {
   height: 180px;
   object-fit: cover;
+}
+
+#publications .card-text {
+  font-size: 16px;
 }
 
 #publications .list-group-item {
