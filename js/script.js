@@ -21,6 +21,13 @@ document.addEventListener("DOMContentLoaded", function () {
     ],
   });
 
+  $(".multiple-items").slick({
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrows: true,
+  });
+
   var carousel = document.getElementById("carousel-autoplaying");
 
   carousel.addEventListener("slide.bs.carousel", function (e) {
