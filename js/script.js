@@ -1,4 +1,85 @@
 document.addEventListener("DOMContentLoaded", function () {
+  $(document).ready(function () {
+    // 햄버거 버튼 클릭 이벤트 핸들러
+    $(".navbar-toggler, .navbar-toggler-icon").click(function (event) {
+      var $navbar = $(".navbar-collapse");
+      $navbar.collapse("toggle");
+      event.stopPropagation(); // 이벤트 전파 중지
+    });
+
+    // 문서 클릭 이벤트 핸들러
+    $(document).click(function (event) {
+      var clickover = $(event.target);
+      var $navbar = $(".navbar-collapse");
+      var _opened = $navbar.hasClass("show");
+      if (_opened && !clickover.closest(".navbar").length) {
+        $navbar.collapse("hide");
+      }
+    });
+  });
+
+  $(".autoplay").slick({
+    slidesToShow: 6,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    arrows: false, // 이전 및 다음 버튼을 제거
+    responsive: [
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 575,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+    ],
+  });
+
+  $(".multiple-items").slick({
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrows: true,
+    dots: true,
+    responsive: [
+      {
+        breakpoint: 575,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+    ],
+  });
+
+  var carousel = document.getElementById("carousel-autoplaying");
+
+  carousel.addEventListener("slide.bs.carousel", function (e) {
+    var relatedTarget = e.relatedTarget;
+    var idx = [...relatedTarget.parentElement.children].indexOf(relatedTarget);
+    var items = document.querySelectorAll(".carousel-item");
+    var totalItems = items.length;
+
+    if (idx === 0) {
+      items[totalItems - 1].classList.add("carousel-item-left");
+    } else {
+      items.forEach(function (item) {
+        item.classList.remove("carousel-item-left");
+      });
+    }
+  });
+
+  carousel.addEventListener("slid.bs.carousel", function (e) {
+    var items = document.querySelectorAll(".carousel-item");
+    items.forEach(function (item) {
+      item.classList.remove("carousel-item-left");
+    });
+  });
+
   // 네비게이션 링크 설정
   const navLinks = document.querySelectorAll(".nav-link");
 
